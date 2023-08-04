@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All about sap-web &mdash; sapweb 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Views" href="views.html" />
+    <link rel="prev" title="Welcome to sapweb’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sapweb
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">All about sap-web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sap-web">sap-web</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#terminology">Terminology</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#docker-documentation">Docker Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode-configuration">VScode configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keybindings-and-settings">Keybindings and settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#formatting">Formatting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#font-settings">Font Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo-tree">Todo Tree</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#project-overview">Project Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workflow">Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tests-and-databases">Tests and Databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faq">FAQ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-errors">General Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-issues">Docker issues</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UML_diagram.html">Scholars-Academy-Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CalendarView.html">Calendar View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker-command-guide.html">Gentile introduction to Docker Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage.html">manage module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">api package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">core package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sapweb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">All about sap-web</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/all-about-sapweb.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="all-about-sap-web">
+<h1>All about sap-web<a class="headerlink" href="#all-about-sap-web" title="Permalink to this heading"></a></h1>
+<p>Is is the project documentation for sap-web, a Django developer.
+<a class="reference external" href="https://circleci.com/gh/Swarmies/sap-web/tree/develop"><img alt="CircleCI" src="https://circleci.com/gh/Swarmies/sap-web/tree/develop.svg?style=svg" /></a></p>
+<section id="sap-web">
+<h2>sap-web<a class="headerlink" href="#sap-web" title="Permalink to this heading"></a></h2>
+<p>Scholar Academy Project is a website-based schedule system for students
+to make appointments with tutors/mentors. Which will tremendously help
+facilitate the tutorial process and monitor the effectiveness of the
+provided resources from the facility side.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<p>Under the <code class="docutils literal notranslate"><span class="pre">install</span></code> folder you will find <code class="docutils literal notranslate"><span class="pre">macInstall.sh</span></code> or
+<code class="docutils literal notranslate"><span class="pre">windowInstall.bat</span></code> base on your OS you can run either-or. Once you
+run the installers, you should have Docker and VScode installed. If you
+are on windows you will have <code class="docutils literal notranslate"><span class="pre">wsl2</span></code> installed on your machine.</p>
+<p>If that went perfectly, you can run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./vsextensionInstaller.sh
+</pre></div>
+</div>
+<p>you should see something like</p>
+<figure class="align-default" id="id1">
+<img alt="Installation in progress" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/runvsextinstaller.PNG?raw=true" />
+<figcaption>
+<p><span class="caption-text">Installation in progress</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Once that is finished the install package will show up on VScode.</p>
+<figure class="align-default" id="id2">
+<img alt="Vscode extension" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/extenstion_installed.PNG?raw=true" />
+<figcaption>
+<p><span class="caption-text">Vscode extension</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>on your terminal (<code class="docutils literal notranslate"><span class="pre">wsl</span></code> if you are on windows). This will install all
+the necessary extensions for you to work with <code class="docutils literal notranslate"><span class="pre">docker</span></code> on VScode.</p>
+<p>To run the project locally you need to make sure you have <a class="reference external" href="https://docs.docker.com/engine/install/">Docker
+Engine</a> and
+<a class="reference external" href="https://docs.docker.com/compose/install/">Docker-Compose</a> installed.
+Docker makes it convenient to package every tooling needed for the
+project. Docker gets read of the headache of setting up a Virtual
+Environment, installing dependencies, creating a new Database in
+PostGradSQL, migrating the migrations in Django App, building the React
+App then finally running Django and Web-Pack-dev server.</p>
+</section>
+<section id="terminology">
+<h3>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading"></a></h3>
+<p><strong>Dockerfile</strong>: A set of commands to build an image to be run as a
+container.</p>
+<p><strong>Docker-compose</strong>: A file defining how to run a multi-container Docker
+application.</p>
+<section id="docker-documentation">
+<h4>Docker Documentation<a class="headerlink" href="#docker-documentation" title="Permalink to this heading"></a></h4>
+<p>NOTE: make sure that you are indirectly where you have the
+<code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file. If you get an error at any steps of the
+process below please refer to the <code class="docutils literal notranslate"><span class="pre">FAQ</span></code> section for guidance and quick
+answers.</p>
+<p>To build the docker containers. Simply run the command below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>build
+</pre></div>
+</div>
+<p>To build the container up (start a container)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>up<span class="w"> </span>&lt;name-of-the-container&gt;<span class="w">  </span><span class="c1"># this is specified in the .docker-compose.yml file</span>
+</pre></div>
+</div>
+<p>To get inside the container and open the bash terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>&lt;name-of-the-container&gt;<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>To run the container and get inside it you can use the command below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>&lt;name-of-the-container&gt;<span class="w"> </span>&lt;bash&gt;<span class="w"> </span><span class="c1"># you can use the bash command to open bash terminal</span>
+</pre></div>
+</div>
+<p>To properly close all containers use</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose<span class="w"> </span>down
+</pre></div>
+</div>
+<p>For more information on docker command you can find <a class="reference internal" href="docker-command-guide.html"><span class="doc">Gentile introduction to Docker Container</span></a></p>
+</section>
+</section>
+<section id="vscode-configuration">
+<h3>VScode configuration<a class="headerlink" href="#vscode-configuration" title="Permalink to this heading"></a></h3>
+<section id="keybindings-and-settings">
+<h4>Keybindings and settings<a class="headerlink" href="#keybindings-and-settings" title="Permalink to this heading"></a></h4>
+<p>Inside the extension installing a script, there is a copy bash statement
+that directly copies to the location where VS Code is expecting to get
+the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> and <code class="docutils literal notranslate"><span class="pre">keybindings.json</span></code> files</p>
+<p>However, the link is commented out because of the path difference in
+user VS Code depending on ower installation.</p>
+<p>Therefore, please refer to them if you need additional tricks. However,
+I strongly recommend copying the `keybindings.json`` to help you with
+your development.</p>
+</section>
+<section id="formatting">
+<h4>Formatting<a class="headerlink" href="#formatting" title="Permalink to this heading"></a></h4>
+<p>Press <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">shift</span> <span class="pre">+</span> <span class="pre">P</span></code> and type
+<code class="docutils literal notranslate"><span class="pre">Preferences:</span> <span class="pre">Open</span> <span class="pre">Workspace</span> <span class="pre">Settings</span></code></p>
+<figure class="align-default" id="id3">
+<img alt="preference window" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/preferences.png?raw=true" />
+<figcaption>
+<p><span class="caption-text">preference window</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Under <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> search for Formatting and check <code class="docutils literal notranslate"><span class="pre">Format</span> <span class="pre">On</span> <span class="pre">Save</span></code></p>
+<p>Make sure the <code class="docutils literal notranslate"><span class="pre">prettier</span></code> is selected under <code class="docutils literal notranslate"><span class="pre">Text</span></code> inside the
+<code class="docutils literal notranslate"><span class="pre">Workspace</span></code></p>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">prettier</span></code> under the extension and change the <code class="docutils literal notranslate"><span class="pre">Tab</span></code>
+Width` to 4 space</p>
+</section>
+<section id="font-settings">
+<h4>Font Settings<a class="headerlink" href="#font-settings" title="Permalink to this heading"></a></h4>
+<p>In the workspace, you should set the <code class="docutils literal notranslate"><span class="pre">Font</span> <span class="pre">Family</span></code> to
+<code class="docutils literal notranslate"><span class="pre">Cascadia</span> <span class="pre">Code,</span> <span class="pre">Fira</span> <span class="pre">Code</span></code></p>
+<figure class="align-default">
+<img alt="font view" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/FontChange.PNG?raw=true" />
+</figure>
+<p>You should be able to see a clear font difference in your editor.</p>
+</section>
+<section id="todo-tree">
+<h4>Todo Tree<a class="headerlink" href="#todo-tree" title="Permalink to this heading"></a></h4>
+<p>By default should have <code class="docutils literal notranslate"><span class="pre">BUG</span></code>, <code class="docutils literal notranslate"><span class="pre">HACK</span></code>, <code class="docutils literal notranslate"><span class="pre">FIXME</span></code>, and <code class="docutils literal notranslate"><span class="pre">TODO</span></code></p>
+</section>
+</section>
+<section id="project-overview">
+<h3>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this heading"></a></h3>
+<p>This is how the container will be set up.</p>
+<figure class="align-default" id="id4">
+<img alt="Project container structure" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/projectContainersSetup.PNG?raw=true" />
+<figcaption>
+<p><span class="caption-text">Project container structure</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="workflow">
+<h3>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h3>
+<p>There is the process that we follow throughout our development cycle:</p>
+<ol class="arabic simple">
+<li><p>Fork this repository:</p></li>
+<li><p>Clone your forked repository:</p></li>
+<li><p><a class="reference external" href="#prerequisites">Install the software</a> and <a class="reference external" href="#formatting">VS code
+extensions</a></p></li>
+<li><p>Build <a class="reference external" href="https://github.com/Swarmies/sap-web/blob/develop/Doc/docker-command-guide.md">docker containers</a></p></li>
+<li><p>Make changes and push them to your Fork repository</p></li>
+<li><p>Open up a Peer Review (PR)</p></li>
+</ol>
+</section>
+<section id="tests-and-databases">
+<h3>Tests and Databases<a class="headerlink" href="#tests-and-databases" title="Permalink to this heading"></a></h3>
+<p>After creating a model you need to run the codes below</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>makemigrations<span class="w"> </span>--dry-run<span class="w"> </span>--verbosity<span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<p>then</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</pre></div>
+</div>
+<p>To run coverage locally you can run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>run<span class="w"> </span>--omit<span class="o">=</span><span class="s1">&#39;*/Doc/*&#39;</span><span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>Now you can run the command below and open the html file in your
+favorite edit and see what tests are missing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>html
+</pre></div>
+</div>
+</section>
+<section id="faq">
+<h3>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading"></a></h3>
+<section id="general-errors">
+<h4>General Errors<a class="headerlink" href="#general-errors" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>If you are getting an error from a node like the one below</p></li>
+</ul>
+<figure class="align-default">
+<img alt="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/node-error.PNG?raw=true" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/node-error.PNG?raw=true" />
+</figure>
+<p>try running the command below and rebuilding the image.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/lib/node_modules/npm
+</pre></div>
+</div>
+</section>
+<section id="docker-issues">
+<h4>Docker issues<a class="headerlink" href="#docker-issues" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>Permission error</p></li>
+</ul>
+<figure class="align-default">
+<img alt="permission denied error" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/permission_denied.PNG?raw=true" />
+</figure>
+<ul>
+<li><p>permission denied error</p>
+<blockquote>
+<div><p>you can run the command in as an admin that should solve it</p>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Why am I being asked to run the docker command as a root user (i.e sudo )?</p></li>
+</ul>
+<p>You probably have overlooked this
+<a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/">here</a></p>
+<ul class="simple">
+<li><p>ERROR: Couldn’t connect to Docker daemon at http+docker://localhost -
+is it running? link the one below.</p></li>
+</ul>
+<figure class="align-default">
+<img alt="docker daemon" src="https://github.com/Swarmies/sap-web/blob/develop/Doc/img/docker%20daemon.PNG?raw=true" />
+</figure>
+<ul class="simple">
+<li><p>docker daemon</p></li>
+</ul>
+<p>The command below will fix your problem for now.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>service<span class="w"> </span>docker<span class="w"> </span>start<span class="w">   </span><span class="c1"># for work with SysVinit</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker<span class="w"> </span><span class="c1"># for work with Systemd</span>
+</pre></div>
+</div>
+<p>You probably have not configured docker to start on boot up here is a
+<a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot">link</a>
+on how to do that</p>
+<section id="mac">
+<h5>Mac<a class="headerlink" href="#mac" title="Permalink to this heading"></a></h5>
+<p>Make sure you have a
+<a class="reference external" href="https://code.visualstudio.com/docs/setup/mac">code</a> command
+installed in your path.</p>
+<figure class="align-default" id="id5">
+<img alt="walkthrough" src="https://user-images.githubusercontent.com/32272045/168448980-c8fcf5b3-9fad-4898-b7cc-a22dd256b19f.png" />
+<figcaption>
+<p><span class="caption-text">walkthrough</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="windows">
+<h5>Windows<a class="headerlink" href="#windows" title="Permalink to this heading"></a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">.</span></code> is not opening on <code class="docutils literal notranslate"><span class="pre">wsl</span></code></p></li>
+<li><p>ANS: Linking VScode
+<a class="reference external" href="https://stackoverflow.com/questions/57868950/wsl2-terminal-does-not-recognize-visual-studio-code">locally</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to sapweb’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="views.html" class="btn btn-neutral float-right" title="Views" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Sap-web.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

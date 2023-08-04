@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scholars-Academy-Overview &mdash; sapweb 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Calendar View" href="CalendarView.html" />
+    <link rel="prev" title="Models" href="models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sapweb
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="all-about-sapweb.html">All about sap-web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scholars-Academy-Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#object-model-diagram">Object Model Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#er-diagram">ER Diagram</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#entities-are">Entities are</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sequence-diagram">Sequence Diagram</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#admin-diagram">Admin Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mentor-diagram">Mentor Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#student-diagram">Student Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CalendarView.html">Calendar View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker-command-guide.html">Gentile introduction to Docker Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage.html">manage module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">api package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">core package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sapweb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Scholars-Academy-Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/UML_diagram.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scholars-academy-overview">
+<h1>Scholars-Academy-Overview<a class="headerlink" href="#scholars-academy-overview" title="Permalink to this heading"></a></h1>
+<section id="object-model-diagram">
+<h2>Object Model Diagram<a class="headerlink" href="#object-model-diagram" title="Permalink to this heading"></a></h2>
+<div class="mermaid">
+            classDiagram
+
+    User &lt;-- SignIn
+    User &lt;-- Student
+    User &lt;-- Mentor
+    User &lt;-- Admin
+    Mentor *-- WeekEntry
+    Student -- Calendar
+    Mentor -- Calendar
+    Admin -- Calendar
+    Admin -- Mentor
+    Student -- Event
+
+    class Admin
+    Admin: +string name
+    Admin: +string email
+    Admin: +int jNumber
+    Admin: +string role
+    Admin: string addMentor()
+    Admin: Calendar getCalendarView()
+    Admin: string changeTimeSlat(string mentor)
+
+    class User
+    User: +string fullname
+    User: +string userName
+    User: +string password
+    User: +string email
+    User: +int jNumber
+    User: +string role
+    User: string changeName()
+
+    class Event
+    Event: +string mentorName
+    Event: +string studnetName
+    Event: +date startDate
+    Event: +date endDate
+    Event: +void sendEmail(string mentorEmail, string studentEmail)
+
+    class Mentor
+    Mentor: +string name
+    Mentor: +date timeSlot
+    Mentor: +string courses
+    Mentor: Calendar getCalendarView()
+
+    class Calendar
+    Calendar: +vector&lt;Mentors&gt; getMentors()
+    Calendar: +vector timeSlots
+
+
+    class Student
+    Student: +string role
+    Student: Calendar getCalendarView()
+    Student: string createEvent()
+    Student: string setRole()
+
+    class WeekEntry
+    WeekEntry: -string days
+    WeekEntry: -Date startTime
+    WeekEntry: -Date endTime
+
+    class SignIn
+    SignIn: +string userName
+    SignIn: +string password
+        </div></section>
+<section id="er-diagram">
+<h2>ER Diagram<a class="headerlink" href="#er-diagram" title="Permalink to this heading"></a></h2>
+<section id="entities-are">
+<h3>Entities are<a class="headerlink" href="#entities-are" title="Permalink to this heading"></a></h3>
+<p>USER | STUDENT | MENTOR | SIGN IN | EVENTS | CALENDAR.</p>
+<p>The USER can be either a student, a mentor or admin which is assigned by
+the ‘role’ attribute in the user table.
+Events is transaction that is posted when a student is booked for mentorship program.</p>
+<div class="mermaid">
+            erDiagram
+    USER ||--|| STUDENT : is
+    USER ||--|| MENTOR : is
+    USER ||--|| SIGNIN : has
+    STUDENT ||--o{ EVENTS : posts
+    STUDENT ||--|| CALENDAR : has
+    MENTOR ||--|| CALENDAR : has
+    USER {
+        int user_id PK
+        string fullName
+        int jNumber
+        string email
+        string role
+        string userName
+        string password
+    }
+    STUDENT {
+        int student_id PK
+        int user_id FK
+    }
+    MENTOR {
+        int mentor_id PK
+        int user_id FK
+        string courses
+    }
+    SIGNIN {
+        int signIn_id PK
+        int user_id FK
+        string userName
+        string password
+    }
+    EVENTS {
+        int events_id PK
+        int mentor_id FK
+        int student_id FK
+        dateFormat startDate
+        dateFormat endDate
+    }
+    CALENDAR {
+        int calendar_id PK
+        int user_id FK
+        dateFormat assignedDate
+        dateFormat startDate
+        dateFormat endDate
+    }
+        </div></section>
+</section>
+<section id="sequence-diagram">
+<h2>Sequence Diagram<a class="headerlink" href="#sequence-diagram" title="Permalink to this heading"></a></h2>
+<section id="admin-diagram">
+<h3>Admin Diagram<a class="headerlink" href="#admin-diagram" title="Permalink to this heading"></a></h3>
+<div class="mermaid">
+            sequenceDiagram
+    actor Admin
+    Admin-&gt;&gt;+signIn/signUp: getUser()
+    signIn/signUp--&gt;&gt;-Admin: successfully login / error response
+    Admin-&gt;&gt;+CalendarView: getCaldentView()
+    CalendarView--&gt;&gt;-Admin: weekView() / error response
+    Admin-&gt;&gt;+addMentor: create mentor class
+    addMentor--&gt;&gt;-Admin: Mentor has been added / error response
+    Admin-&gt;&gt;+CalendarView: changeTimeSlot
+    CalendarView--&gt;&gt;-Admin: schedule updated! / error response
+    Admin-&gt;&gt;+Logout: logout
+    Logout--&gt;&gt;-Admin: logout / error response
+        </div></section>
+<section id="mentor-diagram">
+<h3>Mentor Diagram<a class="headerlink" href="#mentor-diagram" title="Permalink to this heading"></a></h3>
+<div class="mermaid">
+            sequenceDiagram
+    actor Mentor
+    Mentor-&gt;&gt;+signIn/signUp: getUser()
+    signIn/signUp--&gt;&gt;-Mentor: successfully login / error response
+    signIn/signUp-&gt;&gt;+CalendarView: getCaldentView()
+    CalendarView--&gt;-Mentor: weekView() / error response
+    Mentor-&gt;&gt;+CalendarView: changeTimeSlot
+    CalendarView--&gt;&gt;+Mentor: schedule updated! / error response
+    Mentor-&gt;&gt;+Logout: logout
+    Logout--&gt;&gt;-Mentor: logout / error response
+        </div></section>
+<section id="student-diagram">
+<h3>Student Diagram<a class="headerlink" href="#student-diagram" title="Permalink to this heading"></a></h3>
+<div class="mermaid">
+            sequenceDiagram
+    actor Student
+    Student-&gt;&gt;+signIn/signUp: getUser()
+    signIn/signUp--&gt;&gt;-Student: successfully login / error response
+    signIn/signUp-&gt;&gt;+CalendarView: getCaldentView()
+    CalendarView--&gt;&gt;-Student: weekView() / error response
+    CalendarView-&gt;&gt;+Event: schedule event() / error response
+    Event--&gt;&gt;-Student: your appointment has be scheduled / error response
+    Student-&gt;&gt;+Logout: logout
+    Logout--&gt;&gt;-Student: logout / error response
+        </div></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="models.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CalendarView.html" class="btn btn-neutral float-right" title="Calendar View" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Sap-web.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

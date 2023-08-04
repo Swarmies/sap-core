@@ -1,0 +1,289 @@
+############
+All about sap-web
+############
+
+Is is the project documentation for sap-web, a Django developer.
+|CircleCI|
+
+sap-web
+=======
+
+Scholar Academy Project is a website-based schedule system for students
+to make appointments with tutors/mentors. Which will tremendously help
+facilitate the tutorial process and monitor the effectiveness of the
+provided resources from the facility side.
+
+Prerequisites
+-------------
+
+Under the ``install`` folder you will find ``macInstall.sh`` or
+``windowInstall.bat`` base on your OS you can run either-or. Once you
+run the installers, you should have Docker and VScode installed. If you
+are on windows you will have ``wsl2`` installed on your machine.
+
+If that went perfectly, you can run
+
+.. code:: bash
+
+   ./vsextensionInstaller.sh
+
+you should see something like
+
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/runvsextinstaller.PNG?raw=true
+   :alt: Installation in progress
+
+   Installation in progress
+
+Once that is finished the install package will show up on VScode.
+
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/extenstion_installed.PNG?raw=true
+   :alt: Vscode extension
+
+   Vscode extension
+
+on your terminal (``wsl`` if you are on windows). This will install all
+the necessary extensions for you to work with ``docker`` on VScode.
+
+To run the project locally you need to make sure you have `Docker
+Engine <https://docs.docker.com/engine/install/>`__ and
+`Docker-Compose <https://docs.docker.com/compose/install/>`__ installed.
+Docker makes it convenient to package every tooling needed for the
+project. Docker gets read of the headache of setting up a Virtual
+Environment, installing dependencies, creating a new Database in
+PostGradSQL, migrating the migrations in Django App, building the React
+App then finally running Django and Web-Pack-dev server.
+
+Terminology
+-----------
+
+**Dockerfile**: A set of commands to build an image to be run as a
+container.
+
+**Docker-compose**: A file defining how to run a multi-container Docker
+application.
+
+Docker Documentation
+~~~~~~~~~~~~~~~~~~~~
+
+NOTE: make sure that you are indirectly where you have the
+``docker-compose.yml`` file. If you get an error at any steps of the
+process below please refer to the ``FAQ`` section for guidance and quick
+answers.
+
+To build the docker containers. Simply run the command below
+
+.. code:: bash
+
+   docker-compose build
+
+To build the container up (start a container)
+
+.. code:: bash
+
+   docker-compose up <name-of-the-container>  # this is specified in the .docker-compose.yml file
+
+To get inside the container and open the bash terminal
+
+.. code:: bash
+
+   docker-compose exec <name-of-the-container> bash
+
+To run the container and get inside it you can use the command below
+
+.. code:: bash
+
+   docker-compose run --rm <name-of-the-container> <bash> # you can use the bash command to open bash terminal 
+
+To properly close all containers use
+
+.. code:: bash
+
+   docker-compose down
+
+For more information on docker command you can find :doc:`docker-command-guide` 
+
+VScode configuration
+--------------------
+
+
+Keybindings and settings
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Inside the extension installing a script, there is a copy bash statement
+that directly copies to the location where VS Code is expecting to get
+the ``settings.json`` and ``keybindings.json`` files
+
+However, the link is commented out because of the path difference in
+user VS Code depending on ower installation.
+
+Therefore, please refer to them if you need additional tricks. However,
+I strongly recommend copying the \`keybindings.json`\` to help you with
+your development.
+
+Formatting
+~~~~~~~~~~
+
+Press ``ctrl + shift + P`` and type
+``Preferences: Open Workspace Settings``
+
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/preferences.png?raw=true
+   :alt: preference window
+
+   preference window
+
+Under ``Workspace`` search for Formatting and check ``Format On Save``
+
+Make sure the ``prettier`` is selected under ``Text`` inside the
+``Workspace``
+
+Search for ``prettier`` under the extension and change the ``Tab``
+Width\` to 4 space
+
+Font Settings
+~~~~~~~~~~~~~
+
+In the workspace, you should set the ``Font Family`` to
+``Cascadia Code, Fira Code``
+
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/FontChange.PNG?raw=true
+   :alt: font view
+
+You should be able to see a clear font difference in your editor.
+
+Todo Tree
+~~~~~~~~~
+
+By default should have ``BUG``, ``HACK``, ``FIXME``, and ``TODO``
+
+Project Overview
+----------------
+
+This is how the container will be set up.
+
+
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/projectContainersSetup.PNG?raw=true
+   :alt: Project container structure
+   
+   Project container structure
+
+Workflow
+--------
+
+There is the process that we follow throughout our development cycle:
+
+1. Fork this repository:
+2. Clone your forked repository:
+3. `Install the software <#prerequisites>`__ and `VS code
+   extensions <#formatting>`__
+4. Build `docker containers <https://github.com/Swarmies/sap-web/blob/develop/Doc/docker-command-guide.md>`__
+5. Make changes and push them to your Fork repository
+6. Open up a Peer Review (PR)
+
+Tests and Databases
+-------------------
+
+After creating a model you need to run the codes below
+
+.. code:: bash
+
+   python manage.py makemigrations --dry-run --verbosity 3
+
+then
+
+.. code:: bash
+
+  python manage.py migrate 
+
+To run coverage locally you can run
+
+.. code:: bash
+
+  coverage run --omit='*/Doc/*' manage.py test
+
+Now you can run the command below and open the html file in your
+favorite edit and see what tests are missing
+
+.. code:: bash
+   
+   coverage html
+
+
+FAQ
+---- 
+
+General Errors
+~~~~~~~~~~~~~~
+
+-  If you are getting an error from a node like the one below
+
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/node-error.PNG?raw=true
+   
+   :alt: terminal image
+
+try running the command below and rebuilding the image.
+
+.. code:: bash
+   
+   rm -rf /usr/local/lib/node_modules/npm 
+
+Docker issues
+~~~~~~~~~~~~~
+
+-  Permission error
+
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/permission_denied.PNG?raw=true
+   :alt: permission denied error
+   
+* permission denied error 
+
+   you can run the command in as an admin that should solve it
+
+-  Why am I being asked to run the docker command as a root user (i.e sudo )?
+
+You probably have overlooked this
+`here <https://docs.docker.com/engine/install/linux-postinstall/>`__
+
+-  ERROR: Couldn’t connect to Docker daemon at http+docker://localhost -
+   is it running? link the one below.
+   
+.. figure:: https://github.com/Swarmies/sap-web/blob/develop/Doc/img/docker%20daemon.PNG?raw=true
+   :alt: docker daemon
+
+* docker daemon
+
+
+The command below will fix your problem for now.
+
+.. code:: bash
+   
+   sudo service docker start   # for work with SysVinit
+   sudo systemctl start docker # for work with Systemd
+
+You probably have not configured docker to start on boot up here is a
+`link <https://docs.docker.com/engine/install/linux-postinstall/#configure-docker-to-start-on-boot>`__
+on how to do that
+
+Mac
+***
+
+Make sure you have a
+`code <https://code.visualstudio.com/docs/setup/mac>`__ command
+installed in your path.
+
+.. figure:: https://user-images.githubusercontent.com/32272045/168448980-c8fcf5b3-9fad-4898-b7cc-a22dd256b19f.png
+   :alt: walkthrough
+
+   walkthrough
+
+Windows
+*******
+
+-  ``code .`` is not opening on ``wsl``
+
+-  ANS: Linking VScode
+   `locally <https://stackoverflow.com/questions/57868950/wsl2-terminal-does-not-recognize-visual-studio-code>`__
+
+
+.. |CircleCI| image:: https://circleci.com/gh/Swarmies/sap-web/tree/develop.svg?style=svg
+   :target: https://circleci.com/gh/Swarmies/sap-web/tree/develop
+

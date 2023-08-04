@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar View &mdash; sapweb 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gentile introduction to Docker Container" href="docker-command-guide.html" />
+    <link rel="prev" title="Scholars-Academy-Overview" href="UML_diagram.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sapweb
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="all-about-sapweb.html">All about sap-web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UML_diagram.html">Scholars-Academy-Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Calendar View</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-an-api-end-points">What is an API End points</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-api-endpoints-work"><strong>How API endpoints work</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-connection">API connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#base-url-scholarsacademyprojectapi-com-v1">[Base URL: scholarsacademyprojectapi.com/v1]</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#admin">Admin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-admin-login">request = GET /admin/login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-admin-getcalendarview">request = GET /admin/getCalendarView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-post-admin-addmentor">request: POST /admin/addMentor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-put-admin-changeschedule">request: PUT /admin/changeSchedule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-admin-logout">request: GET /admin/logout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mentor">Mentor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-mentor-login">request: GET /mentor/login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-mentor-getcalendarview">request: GET /mentor/getCalendarView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-put-mentor-changeschedule">request: PUT /mentor/changeSchedule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-mentor-logout">request: GET /mentor/logout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#student">Student</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-student-login">request: GET /student/login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-student-getcalendarview">request: GET /student/getCalendarView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-post-student-scheduleevent">request: POST /student/scheduleEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-get-student-logout">request: GET /student/logout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#calendar-ui">Calendar UI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker-command-guide.html">Gentile introduction to Docker Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">backend package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manage.html">manage module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">api package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">core package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sapweb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Calendar View</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/CalendarView.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calendar-view">
+<h1>Calendar View<a class="headerlink" href="#calendar-view" title="Permalink to this heading"></a></h1>
+<section id="what-is-an-api-end-points">
+<h2>What is an API End points<a class="headerlink" href="#what-is-an-api-end-points" title="Permalink to this heading"></a></h2>
+<p>An API endpoint is a point at which an API (the code that allows two
+software programs to communicate with each other) connects with the
+software program. APIs work by sending <em>requests</em> for information from a
+web application or web server and receiving a <em>response</em>.</p>
+<section id="how-api-endpoints-work">
+<h3><strong>How API endpoints work</strong><a class="headerlink" href="#how-api-endpoints-work" title="Permalink to this heading"></a></h3>
+<p>One side sends the information to the API and is called
+the <a class="reference external" href="https://www.techtarget.com/searchnetworking/definition/client-server">server</a>.
+The other side, the client, makes the requests and manipulates the API.
+The server side that provides the requested information, or resources,
+is the API endpoint.</p>
+<figure class="align-default" id="id1">
+<img alt="Project container structure" src="Doc/img/projectContainersSetup.PNG" />
+<figcaption>
+<p><span class="caption-text">Project container structure</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In our case the client is going to be <strong>Student, Mentor and Admin</strong> as
+seen in the class diagram.</p>
+</section>
+<section id="api-connection">
+<h3>API connection<a class="headerlink" href="#api-connection" title="Permalink to this heading"></a></h3>
+<p>After creating the API locally, it will be hosted on an api hosting
+platform. Swagger is not only good for documenting the API but also has
+features for running and testing the API. The API should be able to
+respond to requests as seen below.</p>
+<p>When making GET request to the link, the API responds with the following
+JSON data</p>
+</section>
+<section id="base-url-scholarsacademyprojectapi-com-v1">
+<h3>[Base URL: scholarsacademyprojectapi.com/v1]<a class="headerlink" href="#base-url-scholarsacademyprojectapi-com-v1" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+<section id="admin">
+<h2>Admin<a class="headerlink" href="#admin" title="Permalink to this heading"></a></h2>
+<section id="request-get-admin-login">
+<h3>request = GET /admin/login<a class="headerlink" href="#request-get-admin-login" title="Permalink to this heading"></a></h3>
+<p>GET /admin/login Logs admin into the system</p>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>username(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>The user name used for login</p></td>
+</tr>
+<tr class="row-even"><td><p>password(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>The password used for login</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Invalid username/password</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin_login&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Successfully Logged In!&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin_login&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid username or password. Please check try again&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="request-get-admin-getcalendarview">
+<h3>request = GET /admin/getCalendarView<a class="headerlink" href="#request-get-admin-getcalendarview" title="Permalink to this heading"></a></h3>
+<p>GET /admin/getCalendarView Gets the Calendar data</p>
+<p><strong>Parameters</strong></p>
+<p>No Parameters needed.</p>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Dinaol Tadesse&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;courses&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="s2">&quot;csc 118&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;calculus&quot;</span>
+<span class="w">   </span><span class="p">],</span>
+<span class="w">   </span><span class="nt">&quot;calendar&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Thursday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:12:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:13:00&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Monday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Wednesday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:07:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:09:00&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="request-post-admin-addmentor">
+<h3>request: POST /admin/addMentor<a class="headerlink" href="#request-post-admin-addmentor" title="Permalink to this heading"></a></h3>
+<p>Adds New Mentor to Database</p>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>body(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>object</p></td>
+<td><p>New Mentor Object.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example body value:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Dinaol Tadesse&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;courses&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="s2">&quot;csc 118&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;calculus&quot;</span>
+<span class="w">   </span><span class="p">],</span>
+<span class="w">   </span><span class="nt">&quot;calendar&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Thursday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:12:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:13:00&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Monday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Wednesday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:07:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:09:00&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Invalid Schedule supplied</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="request-put-admin-changeschedule">
+<h3>request: PUT /admin/changeSchedule<a class="headerlink" href="#request-put-admin-changeschedule" title="Permalink to this heading"></a></h3>
+<p>Updates the Schedule of Existing Mentor</p>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>jNumber(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Int</p></td>
+<td><p>The J number of the Mentor User</p></td>
+</tr>
+<tr class="row-even"><td><p>body(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>object</p></td>
+<td><p>Updated user Object.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example body value:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Dinaol Tadesse&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;courses&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="s2">&quot;CSC 118&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;Data Structures&quot;</span>
+<span class="w">   </span><span class="p">],</span>
+<span class="w">   </span><span class="nt">&quot;calendar&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Thursday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:12:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:13:00&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Monday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Wednesday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:07:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:09:00&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Invalid Schedule supplied</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="request-get-admin-logout">
+<h3>request: GET /admin/logout<a class="headerlink" href="#request-get-admin-logout" title="Permalink to this heading"></a></h3>
+<p>request: GET /admin/logout Logs out the admin</p>
+<p><strong>Parameters</strong></p>
+<p>No Parameters needed.</p>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin_logout&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Logged Out&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mentor">
+<h2>Mentor<a class="headerlink" href="#mentor" title="Permalink to this heading"></a></h2>
+<section id="request-get-mentor-login">
+<h3>request: GET /mentor/login<a class="headerlink" href="#request-get-mentor-login" title="Permalink to this heading"></a></h3>
+<p>Logs Mentor into the system</p>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>username(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>The user name used for login</p></td>
+</tr>
+<tr class="row-even"><td><p>password(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>The password used for login</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Invalid username/password</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mentor_login&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Successfully Logged In!&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mentor_login&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid username or password. Please check try again&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="request-get-mentor-getcalendarview">
+<h3>request: GET /mentor/getCalendarView<a class="headerlink" href="#request-get-mentor-getcalendarview" title="Permalink to this heading"></a></h3>
+<p>the Calendar data</p>
+<p><strong>Parameters</strong></p>
+<p>No Parameters needed.</p>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Dinaol Tadesse&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;courses&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="s2">&quot;csc 118&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;calculus&quot;</span>
+<span class="w">   </span><span class="p">],</span>
+<span class="w">   </span><span class="nt">&quot;calendar&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Thursday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:12:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:13:00&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Monday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Wednesday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:07:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:09:00&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="request-put-mentor-changeschedule">
+<h3>request: PUT /mentor/changeSchedule<a class="headerlink" href="#request-put-mentor-changeschedule" title="Permalink to this heading"></a></h3>
+<p>Updates Schedule of the Mentor</p>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>body(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>object</p></td>
+<td><p>Updated user Object.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example body value:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Dinaol Tadesse&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;courses&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="s2">&quot;csc 118&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;calculus&quot;</span>
+<span class="w">   </span><span class="p">],</span>
+<span class="w">   </span><span class="nt">&quot;calendar&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Thursday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:12:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:13:00&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Monday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Wednesday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:07:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:09:00&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Invalid Schedule supplied</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="request-get-mentor-logout">
+<h3>request: GET /mentor/logout<a class="headerlink" href="#request-get-mentor-logout" title="Permalink to this heading"></a></h3>
+<p>Logs out the Mentor</p>
+<p><strong>Parameters</strong></p>
+<p>No Parameters needed.</p>
+<p id="responses-8"><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mentor_logout&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Logged Out&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="student">
+<h2>Student<a class="headerlink" href="#student" title="Permalink to this heading"></a></h2>
+<section id="request-get-student-login">
+<h3>request: GET /student/login<a class="headerlink" href="#request-get-student-login" title="Permalink to this heading"></a></h3>
+<p>Logs Student into the system</p>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>username(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>The user name used for login</p></td>
+</tr>
+<tr class="row-even"><td><p>password(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>The password used for login</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation!</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Invalid username/password</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;student_login&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Successfully Logged In!&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;student_login&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid username or password. Please check try again&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="request-get-student-getcalendarview">
+<h3>request: GET /student/getCalendarView<a class="headerlink" href="#request-get-student-getcalendarview" title="Permalink to this heading"></a></h3>
+<p>Gets the Calendar Data.</p>
+<p><strong>Parameters</strong></p>
+<p>No Parameters needed.</p>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Dinaol Tadesse&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;courses&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="s2">&quot;csc 118&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;calculus&quot;</span>
+<span class="w">   </span><span class="p">],</span>
+<span class="w">   </span><span class="nt">&quot;calendar&quot;</span><span class="p">:[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Thursday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:12:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:13:00&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;weeks&quot;</span><span class="p">:[</span>
+<span class="w">            </span><span class="s2">&quot;Monday&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Wednesday&quot;</span>
+<span class="w">         </span><span class="p">],</span>
+<span class="w">         </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:07:00&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="s2">&quot;00:09:00&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="request-post-student-scheduleevent">
+<h3>request: POST /student/scheduleEvent<a class="headerlink" href="#request-post-student-scheduleevent" title="Permalink to this heading"></a></h3>
+<p>create appointment with Mentor</p>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>body(required)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>object</p></td>
+<td><p>New event object.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example body value:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;eventId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;mentorName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dinaol Tadesse&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;studentName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Amber Heard&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;startDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-05-23 T21:15:23&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;endDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-05-23 T22:15:23&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Invalid Event supplied</p></td>
+</tr>
+<tr class="row-even"><td><p>404</p></td>
+<td><p>Event not found</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="request-get-student-logout">
+<h3>request: GET /student/logout<a class="headerlink" href="#request-get-student-logout" title="Permalink to this heading"></a></h3>
+<p>Logs out the Student</p>
+<p><strong>Parameters</strong></p>
+<p>No Parameters needed.</p>
+<p><strong>Responses</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>Successful Operation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Student_logout&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Logged Out&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="calendar-ui">
+<h2>Calendar UI<a class="headerlink" href="#calendar-ui" title="Permalink to this heading"></a></h2>
+<p>For displaying the calendar on our application, there are different
+react calendar libraries. We can use the <a class="reference external" href="https://github.com/jquense/react-big-calendar">React Big Calendar
+library</a>. A small demo
+of how the calendar looks like can be found
+<a class="reference external" href="https://jquense.github.io/react-big-calendar/examples/index.html?path=/story/about-big-calendar--page">here</a>.</p>
+<figure class="align-default" id="id2">
+<img alt="Screen Shot 2022-05-18 at 9.21.24 PM.png" src="https://user-images.githubusercontent.com/32272045/169191267-b8572369-bd86-4794-ae0f-6da53c1bf57c.png" />
+<figcaption>
+<p><span class="caption-text">Screen Shot 2022-05-18 at 9.21.24 PM.png</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="resources">
+<h3>Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h3>
+<p><strong>OpenAPI</strong> - standard way to describe an API</p>
+<p><strong>Swagger API -</strong> <a class="reference external" href="https://swagger.io/specification/">https://swagger.io/specification/</a></p>
+<p><strong>Amazon API gateway</strong></p>
+<p><strong>Requestbin</strong>: <a class="reference external" href="https://pipedream.com/workflows">https://pipedream.com/workflows</a></p>
+<p><strong>Tech Target:</strong>
+<a class="reference external" href="https://www.techtarget.com/searchapparchitecture/definition/API-endpoint#:~:text=An%20API%20endpoint%20is%20a,server%20and%20receiving%20a%20response">https://www.techtarget.com/searchapparchitecture/definition/API-endpoint#:~:text=An
+API endpoint is a,server and receiving a
+response</a>.</p>
+<p><strong>API Creation:</strong>
+<a class="reference external" href="https://blog.stoplight.io/how-to-create-an-api-in-three-steps">https://blog.stoplight.io/how-to-create-an-api-in-three-steps</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="UML_diagram.html" class="btn btn-neutral float-left" title="Scholars-Academy-Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="docker-command-guide.html" class="btn btn-neutral float-right" title="Gentile introduction to Docker Container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Sap-web.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
