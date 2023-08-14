@@ -17,3 +17,5 @@ mergeable:
                 count: 1
             limit:
                 users: ["BAbate", "kirubeltadesse", "Roberamelaek", "dinaolmelak", "Getnet12"]
+            required:
+                reviewers: ["Roberamelaek", "dinaolmelak","kirubeltadesse"]
