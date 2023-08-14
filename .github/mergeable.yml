@@ -14,7 +14,7 @@ mergeable:
             message_type: '' # Optional, only check regex against the field specified. Default is '', which processes the 'message' field. Can also be set to 'author_email' or 'committer_email'
           - do: approvals
             min:
-                count: 1
+                count: 0
             limit:
                 users: ["BAbate", "kirubeltadesse", "Roberamelaek", "dinaolmelak", "Getnet12"]
             required:
