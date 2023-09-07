@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Swarmies/sap-web/tree/develop.svg?style=svg)](https://circleci.com/gh/Swarmies/sap-web/tree/develop)
+[![CircleCI](https://circleci.com/gh/Swarmies/sap-core/tree/develop.svg?style=svg)](https://circleci.com/gh/Swarmies/sap-core/tree/develop)
 
 # sap-web
 
