@@ -16,7 +16,7 @@ jobs:
 
       - name: Check for merge conflicts
         run: |
-          git merge-base origin/main HEAD
+          git merge-base origin/develop HEAD
           if [[ $? -ne 0 ]]; then
             echo "Merge conflict detected. Please resolve conflicts before merging."
             exit 1
