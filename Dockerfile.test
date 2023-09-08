@@ -1,0 +1,27 @@
+# Use the same base image as the main svc container
+FROM python:3.9.1
+
+# Set the user to non-root
+# RUN useradd -ms /bin/bash appuser -u 1000
+
+# USER appuser
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set the working directory in the container
+WORKDIR /workspace
+
+
+# copying the requirements.txt file to the work directory
+COPY requirements*.txt ./
+
+# Installing the python requirement on the container
+RUN pip install -r requirements-dev.txt
+
+# Copy all local files to the container
+COPY . ./
+
+# Run tests
+CMD ["pytest"]
